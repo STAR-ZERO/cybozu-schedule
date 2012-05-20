@@ -1,0 +1,12 @@
+#URL
+url: https://xxxxxxxxx/ag.cgi
+#ユーザー名
+username: xxxxxxxxx
+#パスワード
+password: xxxxxxxxx
+#何分先
+interval: 30
+#growl画面に留まる(true or false)
+sticky: false
+#開始〜終了時間内も通知(true or false)
+start_over: false
