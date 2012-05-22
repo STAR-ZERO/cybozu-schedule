@@ -1,0 +1,4 @@
+#!/bin/sh
+D=`cd $(dirname $0);pwd`
+export PATH=$PATH:/usr/local/bin
+$D/cybozu_schedule.rb
