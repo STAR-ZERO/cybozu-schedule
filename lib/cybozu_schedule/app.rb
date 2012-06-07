@@ -33,7 +33,7 @@ module CybozuSchedle
     end
 
     def notify(message)
-        Growl.notify(message, :title => 'サイボウズ スケジュール', :icon => @option.icon)
+        Growl.notify(message, :title => 'サイボウズ スケジュール', :icon => @option.icon, :sticky => @options.sticky)
     end
   end
 end
