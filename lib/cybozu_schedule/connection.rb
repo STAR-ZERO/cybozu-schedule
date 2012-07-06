@@ -52,21 +52,23 @@ module CybozuSchedle
           #タイトル
           title = elem.attributes["detail"]
 
-          #開始時間
-          time = Time.parse(elem.get_elements('when/datetime')[0].attributes['start'])
-          if !@option.start_over && (time <=> Time.now) < 0
-            next
+          if elem.get_elements('when/datetime')[0]
+            #開始時間
+            time = Time.parse(elem.get_elements('when/datetime')[0].attributes['start'])
+            if !@option.start_over && (time <=> Time.now) < 0
+              next
+            end
+            time = time + 60 * 60 * 9
+            start_time = time.strftime('%H:%M')
+
+            #終了時間
+            time = Time.parse(elem.get_elements('when/datetime')[0].attributes['end'])
+            time = time + 60 * 60 * 9
+            end_time = time.strftime('%H:%M')
+
+            schedule = Schedule.new(title, start_time, end_time)
+            schedule_arr << schedule
           end
-          time = time + 60 * 60 * 9
-          start_time = time.strftime('%H:%M')
-
-          #終了時間
-          time = Time.parse(elem.get_elements('when/datetime')[0].attributes['end'])
-          time = time + 60 * 60 * 9
-          end_time = time.strftime('%H:%M')
-
-          schedule = Schedule.new(title, start_time, end_time)
-          schedule_arr << schedule
         end
       end
 
