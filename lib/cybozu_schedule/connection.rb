@@ -62,9 +62,12 @@ module CybozuSchedle
             start_time = time.strftime('%H:%M')
 
             #終了時間
-            time = Time.parse(elem.get_elements('when/datetime')[0].attributes['end'])
-            time = time + 60 * 60 * 9
-            end_time = time.strftime('%H:%M')
+            end_time = start_time
+            if elem.get_elements('when/datetime')[0].attributes['end']
+              time = Time.parse(elem.get_elements('when/datetime')[0].attributes['end'])
+              time = time + 60 * 60 * 9
+              end_time = time.strftime('%H:%M')
+            end
 
             schedule = Schedule.new(title, start_time, end_time)
             schedule_arr << schedule
